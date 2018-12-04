@@ -11,11 +11,10 @@
 #' @param max_share_factor As per Graphhopper documentation
 #' @return A list containing dataframes with lat & long for every point along the route. 
 #' @export
+#' @importFrom magrittr "%>%"
 #' 
 
 gh_route <- function(Start, End, min_plateau_factor = 0.2, max_paths = 5, max_share_factor = 0.6) {
-  require(magrittr)
-  
   if (getOption("Graphhopper_key") %>% length != 0) {
     key <- getOption("Graphhopper_key")
   } else {
