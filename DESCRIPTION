@@ -1,0 +1,22 @@
+Package: ghmapper
+Title: Consume Routing Data from Graphhopper Routing API
+Version: 0.1
+Authors@R: person("Timo", "Roest", email = "timo.roest@me.com", role = c("aut", "cre"))
+Description: This package allows someone to send routing
+    requests to the Graph Hopper API, and quickly plot the
+    various outcomes for visual inspection. Currently, the
+    only algorithm implemented is that of the alternative
+    routes. This package is initially used for debugging.
+Depends: R (>= 3.5.1)
+License: GNU GPLv3
+Encoding: UTF-8
+LazyData: true
+Imports:
+    jsonlite,
+    leaflet,
+    httr,
+    sp,
+    maptools,
+    tibble,
+    magrittr
+RoxygenNote: 6.1.0.9000
