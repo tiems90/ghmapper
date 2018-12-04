@@ -14,12 +14,12 @@
 #' 
 
 gh_route <- function(Start, End, min_plateau_factor = 0.2, max_paths = 5, max_share_factor = 0.6) {
-  if (getOption("Graphhopper_key") %>% length == 0) {
+  if (getOption("Graphhopper_key") %>% length != 0) {
+    key <- getOption("Graphhopper_key")
+  } else {
     key <- readline(prompt="Graphhopper key not found. Please type in your API key: ") %>% 
       trimws
     options("Graphhopper_key" = key)
-  } else {
-    key <- getOption("Graphhopper_key")
   }
   
   url <- "https://graphhopper.com/api/1/route?locale=en-gb&vehicle=car&weighting=fastest&elevation=false&algorithm=alternative_route&ch.disable=true&use_miles=false&layer=Omniscale&points_encoded=false"

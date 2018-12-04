@@ -18,11 +18,16 @@ plot_routes <- function(Routes) {
     df <- rbind(df, df_aux) 
   }
   
+  if (length(Routes)==1) {
   lines <- points_to_line(data = df,
                           long = "long",
-                          lat = "lat",
-                          id_field = "id")
-  proj4string(lines) <- CRS("+init=epsg:4326")
+                          lat = "lat")
+  } else {
+  lines <- points_to_line(data = df,
+                            long = "long",
+                            lat = "lat",
+                            id_field = "id")
+  }
   
   num_lines <- length(lines)
   #Create colour palete

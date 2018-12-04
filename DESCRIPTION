@@ -20,3 +20,6 @@ Imports:
     tibble,
     magrittr
 RoxygenNote: 6.1.0.9000
+Suggests: knitr,
+    rmarkdown
+VignetteBuilder: knitr

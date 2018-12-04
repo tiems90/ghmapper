@@ -1,0 +1,63 @@
+---
+title: "Introduction"
+author: "Timo Roest"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Introduction}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+	message = FALSE,
+	warning = FALSE,
+	collapse = TRUE,
+	comment = "#>"
+)
+source("~/.Rprofile")
+library(ghmapper)
+library(tidyverse)
+library(httr)
+library(leaflet)
+library(sp)
+library(jsonlite)
+library(maptools)
+```
+
+To provide a quick introduction to the way this library works, this vignette will plot several routes that are found using the graphhopper API. 
+
+## API Key
+
+One initial aspect is that in order to use the GH API, you will need an API key. This can be requested on their website, and licences can be purchased. A personal use one is available. 
+
+In order to use this immediately within the library, you can set it as shown below:
+
+```{r load_key, eval=FALSE, include=TRUE}
+options("Graphhopper_key" = "[PUT YOUR KEY HERE]")
+```
+
+If you have not set this KEY, you will be prompted the first time you run the `gh_api` function.
+
+## Download Data
+
+The data is downloaded by providing start and end location as a string, in lat/long, seperated by commas, as shown below. 
+Note that additional parameters can be set. More information can be found by typing `?gh_api`.
+
+```{r download}
+routes <- gh_route(Start = "51.509840,-0.134860", End = "51.384880,-2.361970")
+routes %>% 
+  glimpse
+```
+
+
+## Plot
+
+To visualise the results, the following command can be used:
+
+```{r plot, out.width= '100%'}
+plot_routes(routes)
+```
+
+
