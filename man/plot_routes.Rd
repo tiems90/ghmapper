@@ -7,10 +7,10 @@
 plot_routes(Routes)
 }
 \arguments{
-\item{Routes}{Start location, as a string, formatted as "lat,long"}
+\item{Routes}{Input List, containing dataframes with two columns: "longitude" and "latitude" and points ordered correctly.}
 }
 \value{
-A list containing dataframes with lat & long for every point along the route.
+A leafleft map that will show the routes as indicated.
 }
 \description{
 This function take as an input a list of dataframes 
