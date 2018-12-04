@@ -10,9 +10,9 @@
 #' @export
 
 plot_routes <- function(Routes) {
-  df <- tibble()
+  df <- tibble::tibble()
   for (i in 1:length(Routes)) {
-    df_aux <- data_frame(id = i,
+    df_aux <- tibble::data_frame(id = i,
                          long = Routes[[i]]$longitude,
                          lat = Routes[[i]]$latitude)
     df <- rbind(df, df_aux) 
@@ -31,20 +31,20 @@ plot_routes <- function(Routes) {
   
   num_lines <- length(lines)
   #Create colour palete
-  pal <- colorNumeric("magma", 1:num_lines)
+  pal <- leaflet::colorNumeric("magma", 1:num_lines)
   
   #Plot basemap
-  map <- leaflet() %>% 
-    addProviderTiles(providers$CartoDB.Positron)
+  map <- leaflet::leaflet() %>% 
+    leaflet::addProviderTiles(leaflet::providers$CartoDB.Positron)
   #Plot Routes
   for (i in 1:num_lines) {
-    map <- map %>% addPolylines(data = lines[i],
+    map <- map %>% leaflet::addPolylines(data = lines[i],
                                 weight = 3,
                                 color = pal(i),
                                 group = paste0("Route ",i)
     )
   }
-  map <- map %>% addLayersControl(
+  map <- map %>% leaflet::addLayersControl(
     overlayGroups = paste0("Route ",1:num_lines),
     options = layersControlOptions(collapsed = FALSE)
   )

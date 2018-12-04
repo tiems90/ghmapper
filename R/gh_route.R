@@ -14,6 +14,8 @@
 #' 
 
 gh_route <- function(Start, End, min_plateau_factor = 0.2, max_paths = 5, max_share_factor = 0.6) {
+  require(magrittr)
+  
   if (getOption("Graphhopper_key") %>% length != 0) {
     key <- getOption("Graphhopper_key")
   } else {
@@ -29,8 +31,8 @@ gh_route <- function(Start, End, min_plateau_factor = 0.2, max_paths = 5, max_sh
   url <- paste0(url, "&point=", gsub(" ", "", Start), "&point=", gsub(" ", "", End))
   url <- paste0(url, "&key=", key)
   
-  resp <- GET(url)
-  if (http_type(resp) != "application/json") {
+  resp <- httr::GET(url)
+  if (httr::http_type(resp) != "application/json") {
     stop("API did not return json", call. = FALSE)
   }
   routes <- extract_paths(content(resp, "text"))

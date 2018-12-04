@@ -1,5 +1,5 @@
 extract_paths <- function(json){
-  route <- fromJSON(json, simplifyVector = T)
+  route <- jsonlite::fromJSON(json, simplifyVector = T)
   list <- route$paths$points$coordinates
   list <- list %>% map(as_data_frame)
   
@@ -13,7 +13,7 @@ extract_paths <- function(json){
 points_to_line <- function(data, long, lat, id_field = NULL, sort_field = NULL) {
   
   # Convert to SpatialPointsDataFrame
-  coordinates(data) <- c(long, lat)
+  sp::coordinates(data) <- c(long, lat)
   
   # If there is a sort field...
   if (!is.null(sort_field)) {
@@ -27,7 +27,7 @@ points_to_line <- function(data, long, lat, id_field = NULL, sort_field = NULL) 
   # If there is only one path...
   if (is.null(id_field)) {
     
-    lines <- SpatialLines(list(Lines(list(Line(data)), "id")))
+    lines <- sp::SpatialLines(list(Lines(list(Line(data)), "id")))
     
     return(lines)
     
@@ -37,13 +37,13 @@ points_to_line <- function(data, long, lat, id_field = NULL, sort_field = NULL) 
     # Split into a list by ID field
     paths <- sp::split(data, data[[id_field]])
     
-    sp_lines <- SpatialLines(list(Lines(list(Line(paths[[1]])), "line1")))
+    sp_lines <- sp::SpatialLines(list(Lines(list(Line(paths[[1]])), "line1")))
     
     # I like for loops, what can I say...
     for (p in 2:length(paths)) {
       id <- paste0("line", as.character(p))
-      l <- SpatialLines(list(Lines(list(Line(paths[[p]])), id)))
-      sp_lines <- spRbind(sp_lines, l)
+      l <- sp::SpatialLines(list(Lines(list(Line(paths[[p]])), id)))
+      sp_lines <- maptools::spRbind(sp_lines, l)
     }
     
     return(sp_lines)
