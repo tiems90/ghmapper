@@ -47,7 +47,7 @@ plot_routes <- function(Routes) {
   }
   map <- map %>% leaflet::addLayersControl(
     overlayGroups = paste0("Route ",1:num_lines),
-    options = layersControlOptions(collapsed = FALSE)
+    options =  leaflet::layersControlOptions(collapsed = FALSE)
   )
   map
 }
