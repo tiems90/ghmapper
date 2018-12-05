@@ -18,7 +18,8 @@ Imports:
     sp,
     maptools,
     tibble,
-    magrittr
+    magrittr,
+    purrr
 RoxygenNote: 6.1.0.9000
 Suggests: knitr,
     rmarkdown
