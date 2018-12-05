@@ -1,3 +1,6 @@
+#' @importFrom sp Line
+#' @importFrom sp Lines
+
 extract_paths <- function(json){
   route <- jsonlite::fromJSON(json, simplifyVector = T)
   list <- route$paths$points$coordinates

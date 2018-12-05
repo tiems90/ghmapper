@@ -7,6 +7,7 @@
 #'
 #' @param Routes Input List, containing dataframes with two columns: "longitude" and "latitude" and points ordered correctly. 
 #' @return A leafleft map that will show the routes as indicated.  
+#' @importFrom tibble data_frame
 #' @export
 
 plot_routes <- function(Routes) {

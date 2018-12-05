@@ -3,3 +3,4 @@
 export(gh_route)
 export(plot_routes)
 importFrom(magrittr,"%>%")
+importFrom(tibble,data_frame)
