@@ -34,7 +34,7 @@ gh_route <- function(Start, End, min_plateau_factor = 0.2, max_paths = 5, max_sh
   if (httr::http_type(resp) != "application/json") {
     stop("API did not return json", call. = FALSE)
   }
-  routes <- extract_paths(content(resp, "text"))
+  routes <- extract_paths(httr::content(resp, "text"))
   routes
 }
 

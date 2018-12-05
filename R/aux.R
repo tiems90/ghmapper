@@ -1,7 +1,7 @@
 extract_paths <- function(json){
   route <- jsonlite::fromJSON(json, simplifyVector = T)
   list <- route$paths$points$coordinates
-  list <- list %>% map(as_data_frame)
+  list <- list %>% purrr::map(as_data_frame)
   
   for (i in 1:length(list)) {
     names(list[[i]]) <- c("longitude","latitude")
