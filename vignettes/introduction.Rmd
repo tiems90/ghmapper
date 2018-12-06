@@ -18,12 +18,8 @@ knitr::opts_chunk$set(
 )
 source("~/.Rprofile")
 library(ghmapper)
-library(tidyverse)
-library(httr)
-library(leaflet)
-library(sp)
-library(jsonlite)
-library(maptools)
+library(magrittr)
+library(tibble)
 ```
 
 To provide a quick introduction to the way this library works, this vignette will plot several routes that are found using the graphhopper API. 
